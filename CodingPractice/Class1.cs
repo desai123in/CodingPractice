@@ -14,7 +14,7 @@ namespace CodingPractice
         //int[] arrivals = new int[numCustomers];
         //int[] cookingTimes = new int[numCustomers];
 
-        
+        //this is for custom equality comparison
         //for(int i=0;i<numCustomers;i++)
         //    {
         //        string[] temp = Console.ReadLine().Split(' ');
