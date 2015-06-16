@@ -98,11 +98,37 @@ namespace CodingPractice
  
             Console.WriteLine();
              *****/
-            Console.WriteLine(DecimalToBinary(233));
+            //Console.WriteLine(DecimalToBinary(233));
+
+            List<int> list = new List<int>() { 0,1,2,3,5,10,14,81 };
+            int[] arr = list.ToArray();
+
+            FindifTwoNumberExistInArrayWhoseSumisGiven(arr, 18);
 
             Console.Read();
        
     }
+
+        public static bool FindifTwoNumberExistInArrayWhoseSumisGiven(int[] arr,int sum)
+        {
+            int l = 0;
+            int r = arr.Length - 1;
+
+            while(l<r)
+            {
+                if (arr[l] + arr[r] == sum)
+                {
+                    Console.WriteLine("sum found:" + arr[l] + "," + arr[r]);
+                    return true;
+                }
+                else if (arr[l] + arr[r] < sum)
+                    l++;
+                else
+                    r--;
+            }
+
+            return false;
+        }
         public static void Quicksort(IComparable[] elements, int left, int right)
         {
             int i = left, j = right;
