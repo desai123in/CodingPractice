@@ -46,7 +46,7 @@ namespace CodingPractice
 
             //Console.WriteLine(FindFirstUniqueChar("fbcdhbfeced"));
 
-
+            /***
             List<int> list = new List<int>() { 1, 2, 3, 5 };
             int[] arr1 = list.ToArray();
 
@@ -54,31 +54,52 @@ namespace CodingPractice
             int[] arr2 = list2.ToArray();
 
             MergeSortedArrays(arr1, arr2);
+             *****/
        //     MinAvg();
+            
             //Tuple<int, int> num = new Tuple<int, int>(10, 45);
             //num = GCD(num);
             //Console.WriteLine(num.Item1);
-            //string line = "3 5 10";
-            //string[] tempArr = line.Split(' ');
-            //int multiplier1 = Int32.Parse(tempArr[0]);
-            //int multiplier2 = Int32.Parse(tempArr[1]);
-            //int num = Int32.Parse(tempArr[2]);
+            
 
-            Console.WriteLine(PrintMultiPle(3, 5, 15));
+           // Console.WriteLine(PrintMultiPle(3, 5, 15));
 
-            //for (int i = 0; i < 50;i++ )
-            //{
-            //    Console.WriteLine(IfFunctionIsCalled10TimesInaMinute());
+            /******
+            for (int i = 0; i < 50; i++)
+            {
+                Console.WriteLine(IfFunctionIsCalled10TimesInaMinute());
 
-            //    Thread.Sleep(5000);
-            //    if (i == 9)
-            //        Thread.Sleep(35000);
-            //}
+                Thread.Sleep(5000);
+                if (i == 9)
+                    Thread.Sleep(35000);
+            }
+            *******/
 
-                Console.Read();
+            Console.WriteLine(DecimalToBinary(233));
+
+            Console.Read();
        
     }
 
+        private static string DecimalToBinary(int deciml)
+        {
+            StringBuilder str = new StringBuilder();
+            Stack<int> stack = new Stack<int>();
+
+            while(deciml > 0)
+            {
+                int reminder;
+                deciml = Math.DivRem(deciml, 2, out reminder);
+                stack.Push(reminder);
+            }
+            while(stack.Count > 0)
+            {
+                str.Append(stack.Pop().ToString());
+            }
+            return str.ToString();
+            
+
+        }
         private static bool IfFunctionIsCalled10TimesInaMinute()
         {
             
