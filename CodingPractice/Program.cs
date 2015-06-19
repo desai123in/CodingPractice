@@ -10,7 +10,8 @@ namespace CodingPractice
     class Program
     {
         public static Queue<DateTime> queue = new Queue<DateTime>();
-        static void Main(String[] args) {
+        static void Main(String[] args)
+        {
 
             //AsyncTest();
             //test;
@@ -55,14 +56,14 @@ namespace CodingPractice
 
             MergeSortedArrays(arr1, arr2);
              *****/
-       //     MinAvg();
-            
+            //     MinAvg();
+
             //Tuple<int, int> num = new Tuple<int, int>(10, 45);
             //num = GCD(num);
             //Console.WriteLine(num.Item1);
-            
 
-           // Console.WriteLine(PrintMultiPle(3, 5, 15));
+
+            // Console.WriteLine(PrintMultiPle(3, 5, 15));
 
             /******
             for (int i = 0; i < 50; i++)
@@ -100,14 +101,36 @@ namespace CodingPractice
              *****/
             //Console.WriteLine(DecimalToBinary(233));
 
-            List<int> list = new List<int>() { 0,1,2,3,5,10,14,81 };
+            /***
+            List<int> list = new List<int>() { 0, 1, 2, 3, 5, 10, 14, 81 };
             int[] arr = list.ToArray();
-
+                         
             FindifTwoNumberExistInArrayWhoseSumisGiven(arr, 18);
+            ******/
+            int[] arr = new int[] { -2, -3, 5, -1, -2, 1, 5, -3 };
+            Console.WriteLine(FindMaxContigousSumArray(arr));             
 
             Console.Read();
-       
-    }
+
+        }
+
+        private static int FindMaxContigousSumArray(int[] arr)
+        {
+            List<int> contigousArry = new List<int>();
+            int maxsofar = 0;
+            int max = 0;
+            for (int i = 0; i < arr.Length;i++)
+            {
+                maxsofar += arr[i];
+                if (0 > maxsofar)
+                    maxsofar = 0;
+                else if (max < maxsofar)
+                    max = maxsofar;             
+                
+            }
+            return max;
+            
+        }
 
         public static bool FindifTwoNumberExistInArrayWhoseSumisGiven(int[] arr,int sum)
         {
@@ -251,6 +274,7 @@ namespace CodingPractice
 
         private static void MinAvg()
         {
+            //THIS REQUIRES PRIORITY QUEUE
             int numCustomers = 5;
             int[] arrivals = new int[numCustomers];
             int[] cookingTimes = new int[numCustomers];
