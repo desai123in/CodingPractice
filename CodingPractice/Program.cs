@@ -9,6 +9,17 @@ namespace CodingPractice
 {
     class Program
     {
+        /*Imp:
+         * -to all List.BinarySearch, list need to be sorted first
+         * -Array.Sort internally use extern (unmanaged TrySZSort method, which is introspective)
+         *     If the partition size is fewer than 16 elements, it uses an insertion sort algorithm.
+               If the number of partitions exceeds 2 * LogN, where N is the range of the input array, 
+         *          it uses a Heapsort algorithm.
+               Otherwise, it uses a Quicksort algorithm. 
+         * 
+         * 
+         * 
+         * */
         public static Queue<DateTime> queue = new Queue<DateTime>();
         static void Main(String[] args)
         {
