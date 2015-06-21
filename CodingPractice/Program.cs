@@ -125,7 +125,7 @@ namespace CodingPractice
             *****/
             
             /***
-            List<int> list = new List<int>() { 0, 1, 2, 3, 6, 7, 14, 81 };
+            List<int> list = new List<int>() { 0, 1, 81, 6, 3, 7, 14, 2 };
             int[] arr = list.ToArray();
             List<int> list2 = new List<int>() { 0, 13, 2, 31, 5,1, 10, 14, 81 };
             int[] arr2 = list2.ToArray();
@@ -136,23 +136,24 @@ namespace CodingPractice
             ****/
 
             //Not sorted
-            //List<int> list = new List<int>() { 0, 1, 2, 3, 6, 7, 14, 81 };
-            //int[] arr = list.ToArray();
+            List<int> list = new List<int>() { 0, 1, 81, 6, 3, 7, 14, 2,9,0 };
+            int[] arr = list.ToArray();
             
 
-            ////Sorted
-            //List<int> list2 = new List<int>() { 0, 13, 2, 31, 5, 1, 10, 14, 81 };
-            //int[] arr2 = list2.ToArray();
-            //arr2 = BubbleSort(arr2);
+            //Sorted
+            List<int> list2 = new List<int>() { 0, 13, 2, 31, 5, 1, 10, 14, 81 };
+            int[] arr2 = list2.ToArray();
+            arr2 = BubbleSort(arr2);
 
-            //int[] uniqueArr1Items = ItemsOnlyInFirstArrayUsingSortedArr2_SQLNestedLoopUsingIndexSeek(arr, arr2);
-            //for (int i = 0; i < uniqueArr1Items.Length; i++)
-            //    Console.Write(uniqueArr1Items[i] + ",");
+            int[] uniqueArr1Items = ItemsOnlyInFirstArrayUsingSortedArr2_SQLNestedLoopUsingIndexSeek(arr, arr2);
+            for (int i = 0; i < uniqueArr1Items.Length; i++)
+                Console.Write(uniqueArr1Items[i] + ",");
 
+            /*
             List<int> list = new List<int>() {1, 1, 2, 3, 6, 7, 14, 81 };
             int[] arr = list.ToArray();
             Console.Write(BinarySearch(arr,1));
-
+            */
 
             /***
             List<int> list2 = new List<int>() { 0, 13, 2, 31, 5, 1, 10, 31, 81 };
@@ -168,10 +169,13 @@ namespace CodingPractice
         private static int[] ItemsOnlyInFirstArrayUsingSortedArr2_SQLNestedLoopUsingIndexSeek(int[] arr1, int[] arr2)
         {
             List<int> unique = new List<int>();
-            //for (int i = 0; i < arr1.Length;i++)
+            for(int i = 0; i < arr1.Length;i++)
+            {
+                if (!BinarySearch(arr2, arr1[i]))
+                    unique.Add(arr1[i]);
+            }
 
-
-                return null;
+            return unique.ToArray();
         }
 
         private static bool BinarySearch(int[] arr,int item)
@@ -185,17 +189,16 @@ namespace CodingPractice
 
             while (true)
             {
-                mid = start + (end -start) / 2;
+                mid = (start + end) / 2; //start + (end - start)/2
                 if(item == arr[mid])
                 {
                     return true;
                 }
-                if (mid == 0 || mid == arr.Length - 1)
+                if (start == end)
                     break;
                 if (item > arr[mid])
                 {
-                    start = mid + 1;
-                    
+                    start = mid + 1;                    
                 }
                 else
                 {                    
