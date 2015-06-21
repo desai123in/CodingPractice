@@ -118,13 +118,146 @@ namespace CodingPractice
                          
             FindifTwoNumberExistInArrayWhoseSumisGiven(arr, 18);
             ******/
+
+            /****
             int[] arr = new int[] { -2, -3, 5, -1, -2, 1, 5, -3 };
             Console.WriteLine(FindMaxContigousSumArray(arr));             
+            *****/
+            
+            /***
+            List<int> list = new List<int>() { 0, 1, 2, 3, 6, 7, 14, 81 };
+            int[] arr = list.ToArray();
+            List<int> list2 = new List<int>() { 0, 13, 2, 31, 5,1, 10, 14, 81 };
+            int[] arr2 = list2.ToArray();
 
+            int[] uniqueArr1Items = ItemsOnlyInFirstArrayUsingHashTable_SQLHashJoin(arr, arr2);
+            for (int i = 0; i < uniqueArr1Items.Length; i++)
+                Console.Write(uniqueArr1Items[i] + ",");
+            ****/
+
+            //Not sorted
+            //List<int> list = new List<int>() { 0, 1, 2, 3, 6, 7, 14, 81 };
+            //int[] arr = list.ToArray();
+            
+
+            ////Sorted
+            //List<int> list2 = new List<int>() { 0, 13, 2, 31, 5, 1, 10, 14, 81 };
+            //int[] arr2 = list2.ToArray();
+            //arr2 = BubbleSort(arr2);
+
+            //int[] uniqueArr1Items = ItemsOnlyInFirstArrayUsingSortedArr2_SQLNestedLoopUsingIndexSeek(arr, arr2);
+            //for (int i = 0; i < uniqueArr1Items.Length; i++)
+            //    Console.Write(uniqueArr1Items[i] + ",");
+
+            List<int> list = new List<int>() {1, 1, 2, 3, 6, 7, 14, 81 };
+            int[] arr = list.ToArray();
+            Console.Write(BinarySearch(arr,1));
+
+
+            /***
+            List<int> list2 = new List<int>() { 0, 13, 2, 31, 5, 1, 10, 31, 81 };
+            int[] arr2 = list2.ToArray();
+
+            arr2 = BubbleSort(arr2);
+            for (int i = 0; i < arr2.Length; i++)
+                Console.Write(arr2[i] + ",");
+            ****/
             Console.Read();
 
         }
+        private static int[] ItemsOnlyInFirstArrayUsingSortedArr2_SQLNestedLoopUsingIndexSeek(int[] arr1, int[] arr2)
+        {
+            List<int> unique = new List<int>();
+            //for (int i = 0; i < arr1.Length;i++)
 
+
+                return null;
+        }
+
+        private static bool BinarySearch(int[] arr,int item)
+        {
+            int mid =0;
+            int start = 0;
+            int end = arr.Length;
+
+            if (item < arr[0] || item > arr[arr.Length - 1])
+                return false;
+
+            while (true)
+            {
+                mid = start + (end -start) / 2;
+                if(item == arr[mid])
+                {
+                    return true;
+                }
+                if (mid == 0 || mid == arr.Length - 1)
+                    break;
+                if (item > arr[mid])
+                {
+                    start = mid + 1;
+                    
+                }
+                else
+                {                    
+                    end = mid - 1;
+                }
+            }
+
+            return false;
+
+        }
+
+        private static int[] ItemsOnlyInFirstArrayUsingSortedArr1andSortedArray2_SQLMergeJoin(int[] arr1, int[] arr2)
+        {
+
+            return null;
+        }
+
+        
+        private static int[] ItemsOnlyInFirstArrayUsingHashTable_SQLHashJoin(int[] arr1,int[] arr2)
+        {
+            List<int> list = new List<int>();
+
+            Dictionary<int, int> dict = new Dictionary<int, int>();
+            List<int> uniqueArr1Items = new List<int>();
+
+            for (int i = 0; i < arr2.Length;i++ )
+            {
+                //dict.Add(arr2[i], 1);
+                dict[arr2[i]] = 1;
+            }
+
+            for (int i = 0; i < arr1.Length; i++)
+            {
+
+                int temp = 0;
+                if (!dict.TryGetValue(arr1[i], out temp))
+                {
+                    uniqueArr1Items.Add(arr1[i]);
+                }
+            }
+
+            return uniqueArr1Items.ToArray();
+        }
+
+        private static int[] BubbleSort(int[] arr)
+        {
+            for (int j = arr.Length - 1; j >= 0; j--)
+            {
+
+                for (int i = 0; i < j; i++)
+                {
+                    if(arr[i] > arr[i+1])
+                    {
+                        int temp = arr[i];
+                        arr[i] = arr[i+1];
+                        arr[i + 1] = temp;
+
+                    }
+                }
+            }
+            return arr;
+        }
         private static int FindMaxContigousSumArray(int[] arr)
         {
             List<int> contigousArry = new List<int>();
