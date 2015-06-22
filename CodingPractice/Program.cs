@@ -135,19 +135,22 @@ namespace CodingPractice
                 Console.Write(uniqueArr1Items[i] + ",");
             ****/
 
+            /****
             //Not sorted
-            List<int> list = new List<int>() { 0, 1, 81, 6, 3, 7, 14, 2,9,0 };
+            List<int> list = new List<int>() { 2, 1, 81, 6, 3, 7, 14, 2,9,0,82};
             int[] arr = list.ToArray();
             
 
             //Sorted
-            List<int> list2 = new List<int>() { 0, 13, 2, 31, 5, 1, 10, 14, 81 };
+            List<int> list2 = new List<int>() { 1, 13, 2, 31, 5, 1, 10, 14, 81 };
             int[] arr2 = list2.ToArray();
             arr2 = BubbleSort(arr2);
 
             int[] uniqueArr1Items = ItemsOnlyInFirstArrayUsingSortedArr2_SQLNestedLoopUsingIndexSeek(arr, arr2);
             for (int i = 0; i < uniqueArr1Items.Length; i++)
                 Console.Write(uniqueArr1Items[i] + ",");
+            *****/
+
 
             /*
             List<int> list = new List<int>() {1, 1, 2, 3, 6, 7, 14, 81 };
@@ -163,6 +166,24 @@ namespace CodingPractice
             for (int i = 0; i < arr2.Length; i++)
                 Console.Write(arr2[i] + ",");
             ****/
+
+            //sorted
+            List<int> list = new List<int>() { 2, 1, 81, 6, 3, 7, 14, 2, 9, 0, 82 };
+            int[] arr = list.ToArray();
+            arr = BubbleSort(arr);
+
+
+            //Sorted
+            List<int> list2 = new List<int>() { 1, 13, 2, 31, 5, 1, 10, 14, 81 };
+            int[] arr2 = list2.ToArray();
+            arr2 = BubbleSort(arr2);
+
+            int[] uniqueArr1Items = ItemsOnlyInFirstArrayUsingSortedArr1andSortedArray2_SQLMergeJoin(arr, arr2);
+            for (int i = 0; i < uniqueArr1Items.Length; i++)
+                Console.Write(uniqueArr1Items[i] + ",");
+
+
+           // Console.Write(Division(118, 3));
             Console.Read();
 
         }
@@ -178,24 +199,24 @@ namespace CodingPractice
             return unique.ToArray();
         }
 
+       
         private static bool BinarySearch(int[] arr,int item)
         {
             int mid =0;
             int start = 0;
-            int end = arr.Length;
+            int end = arr.Length-1;
 
             if (item < arr[0] || item > arr[arr.Length - 1])
                 return false;
 
-            while (true)
+            while (start <= end)
             {
                 mid = (start + end) / 2; //start + (end - start)/2
                 if(item == arr[mid])
                 {
                     return true;
                 }
-                if (start == end)
-                    break;
+             
                 if (item > arr[mid])
                 {
                     start = mid + 1;                    
@@ -212,8 +233,47 @@ namespace CodingPractice
 
         private static int[] ItemsOnlyInFirstArrayUsingSortedArr1andSortedArray2_SQLMergeJoin(int[] arr1, int[] arr2)
         {
+            int i = 0;
+            int j = 0;
 
-            return null;
+            List<int> unique = new List<int>();
+            bool flag1 = false ;
+            bool flag2 = false;
+            while(i<arr1.Length || j <arr2.Length)
+            {
+                if(arr1[i] == arr2[j])
+                {
+                    j++;
+                    flag1 = false;
+                    flag2 = false;
+                    while (arr1[i] == arr2[j])
+                    {
+                        j++;
+                        flag2 = true;
+                    }
+
+                    if(flag2)
+                        j--;
+                    while (arr1[i] == arr2[j])
+                    {
+                        i++;
+                        flag1 = true;
+                    }
+                    //if(flag1)
+                    //     i--;
+                }
+                else if(arr1[i] < arr2[j])
+                {
+                    unique.Add(arr1[i]);
+                    i++;
+                }
+                else
+                {
+                    j++;
+                }
+            }
+            
+            return unique.ToArray();
         }
 
         
@@ -733,6 +793,19 @@ namespace CodingPractice
             return numOperations;
         }
 
+        private static int Division(int dividend,int divisor)
+        {
+
+            int reminder =dividend;
+            int i = 0;
+            while(reminder >= 0)
+            {
+                reminder -= divisor;
+                i++;
+            }
+            return i-1;
+        }
+
         private static int strToInt(string str)
         {
            // not so elegant
@@ -745,7 +818,7 @@ namespace CodingPractice
             //}
             //return sum;
 
-            //elegant
+            //elegant, example str "531"
             int res = 0;
             foreach (var c in str)
             {
