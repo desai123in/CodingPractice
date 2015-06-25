@@ -21,6 +21,8 @@ namespace CodingPractice
          * 
          * */
         public static Queue<DateTime> queue = new Queue<DateTime>();
+        
+
         static void Main(String[] args)
         {
 
@@ -233,6 +235,8 @@ namespace CodingPractice
 
         private static int[] ItemsOnlyInFirstArrayUsingSortedArr1andSortedArray2_SQLMergeJoin(int[] arr1, int[] arr2)
         {
+            //THERE IS PROBLEM IN THIS DUE TO DUPLICATE
+            //NEED TO HANDLE DUPLICATE PROPERLY
             int i = 0;
             int j = 0;
 
@@ -553,6 +557,11 @@ namespace CodingPractice
 
 
             return (long)TotalWaitTime/numCustomers;
+        }
+
+        private static int[] MergeTwoSortedInArrayArr2(int[] arr1,int[]arr2)
+        {
+           
         }
 
          private static void MergeSortedArrays(int[] arr1,int[]arr2)
