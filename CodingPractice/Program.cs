@@ -198,6 +198,7 @@ namespace CodingPractice
             int i=0;
             int j=0;
             int k=0;
+            int unwantedspaces = 0;
             char[] arr = str.ToCharArray();
             while(i<str.Length)
             {
@@ -219,11 +220,14 @@ namespace CodingPractice
                     }
                     else
                     {
+                        unwantedspaces++;
                         i++;
                     }
                 }
             }
-            return arr;
+            for (i = arr.Length - unwantedspaces; i < arr.Length; i++)
+                arr[i] = ' ';
+                return arr;
         }
         private static int[] ItemsOnlyInFirstArrayUsingSortedArr2_SQLNestedLoopUsingIndexSeek(int[] arr1, int[] arr2)
         {
