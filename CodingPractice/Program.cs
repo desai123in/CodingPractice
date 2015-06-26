@@ -169,6 +169,7 @@ namespace CodingPractice
                 Console.Write(arr2[i] + ",");
             ****/
 
+            /***
             //sorted
             List<int> list = new List<int>() { 2, 1, 81, 6, 3, 7, 14, 2, 9, 0, 82 };
             int[] arr = list.ToArray();
@@ -183,11 +184,46 @@ namespace CodingPractice
             int[] uniqueArr1Items = ItemsOnlyInFirstArrayUsingSortedArr1andSortedArray2_SQLMergeJoin(arr, arr2);
             for (int i = 0; i < uniqueArr1Items.Length; i++)
                 Console.Write(uniqueArr1Items[i] + ",");
-
+            ***/
 
            // Console.Write(Division(118, 3));
+            string str = "1111   333 4444   555  ";
+            Console.WriteLine(str);
+            Console.WriteLine(RemoveUnwantedSpaces(str));
             Console.Read();
 
+        }
+        private static char[] RemoveUnwantedSpaces(string str)
+        {
+            int i=0;
+            int j=0;
+            int k=0;
+            char[] arr = str.ToCharArray();
+            while(i<str.Length)
+            {
+                if(arr[i] != ' ')
+                {
+                    k = 0;
+                    arr[j] = arr[i];
+                    i++;
+                    j++;
+                }
+                else
+                {
+                    k++;
+                    if(k==1)
+                    {
+                        arr[j] = arr[i];
+                        i++;
+                        j++;
+                    }
+                    else
+                    {
+                        i++;
+                    }
+                }
+            }
+            return arr;
         }
         private static int[] ItemsOnlyInFirstArrayUsingSortedArr2_SQLNestedLoopUsingIndexSeek(int[] arr1, int[] arr2)
         {
@@ -561,7 +597,8 @@ namespace CodingPractice
 
         private static int[] MergeTwoSortedInArrayArr2(int[] arr1,int[]arr2)
         {
-           
+
+            return null;
         }
 
          private static void MergeSortedArrays(int[] arr1,int[]arr2)
