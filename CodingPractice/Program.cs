@@ -195,6 +195,11 @@ namespace CodingPractice
         }
         private static char[] RemoveUnwantedSpaces(string str)
         {
+            /*Algorithm: i keep moving normally,j moves i-unwanted spaces time,keep swapping i to j for all except unwanted spaces
+             * k keep track of unwanted spaces, resets to zero as long as non space encounters
+             * unwantedspaces var to keep track of total number of unwanted spaces 
+             * , to use at end to replace last slots with space or some other character
+             * */
             int i=0;
             int j=0;
             int k=0;
@@ -202,29 +207,28 @@ namespace CodingPractice
             char[] arr = str.ToCharArray();
             while(i<str.Length)
             {
-                if(arr[i] != ' ')
+                if(arr[i] != ' ') //if non space then swap
                 {
                     k = 0;
                     arr[j] = arr[i];
-                    i++;
                     j++;
                 }
                 else
                 {
                     k++;
-                    if(k==1)
+                    if(k==1) //if first space then swap since we do want normal one space between words
                     {
                         arr[j] = arr[i];
-                        i++;
                         j++;
                     }
-                    else
+                    else//in else means spaces between word is > 1
                     {
-                        unwantedspaces++;
-                        i++;
+                        unwantedspaces++; //just keep track of all unwanted spaces
                     }
                 }
+                i++;
             }
+            //replace last remaining slots(after shifting elements backward) to fill with space
             for (i = arr.Length - unwantedspaces; i < arr.Length; i++)
                 arr[i] = ' ';
                 return arr;
